@@ -1,4 +1,4 @@
-pool: Self-hosted pool
+pool: Self-hosted agent
 trigger:
 - master
 
