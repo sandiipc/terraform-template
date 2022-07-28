@@ -12,7 +12,7 @@ variables:
   devEnvironment: dev
   testEnvironment: test
   prodEnvironment: prod
-  tfWorkingDirectory: $(System.DefaultWorkingDirectory)/terraform
+  tfWorkingDirectory: '/opt/hostedtoolcache/terraform/0.12.28/x64/terraform' #$(System.DefaultWorkingDirectory)/terraform
 
 
 stages:
@@ -37,7 +37,7 @@ stages:
     backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
     backendAzureRmKey: $(devEnvironment).tfstate
-    workingDirectory: $(tfWorkingDirectory)
+    workingDirectory: ${{ variables.tfWorkingDirectory }} #$(tfWorkingDirectory)
     dependsOn: ['${{ variables.tfBackendEnvironment }}']
 
 - template: template-terraform-stages.yml
@@ -49,7 +49,7 @@ stages:
     backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
     backendAzureRmKey: $(testEnvironment).tfstate
-    workingDirectory: $(tfWorkingDirectory)
+    workingDirectory: ${{ variables.tfWorkingDirectory }} #$(tfWorkingDirectory)
     dependsOn: ['${{ variables.tfBackendEnvironment }}', '${{ variables.devEnvironment }}']
 
 - template: template-terraform-stages.yml
@@ -61,5 +61,5 @@ stages:
     backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
     backendAzureRmKey: $(prodEnvironment).tfstate
-    workingDirectory: $(tfWorkingDirectory)
+    workingDirectory: ${{ variables.tfWorkingDirectory }} #$(tfWorkingDirectory)
     dependsOn: ['${{ variables.tfBackendEnvironment }}', '${{ variables.devEnvironment }}', '${{ variables.testEnvironment }}']
