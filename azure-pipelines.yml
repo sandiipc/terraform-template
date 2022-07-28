@@ -13,8 +13,9 @@ variables:
   prodEnvironment: prod
   tfWorkingDirectory: 'terraform'
 
+
 stages:
-- template: template-create-terraform-backend.yml
+- template: template-create-terraform-backend.yml  
   parameters:
     environment: ${{ variables.tfBackendEnvironment }}
     environmentDisplayName: Create TF Backend
@@ -24,6 +25,7 @@ stages:
     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
     location: ${{ variables.location }}
     dependsOn: []
+  
 
 - template: template-terraform-stages.yml
   parameters:
