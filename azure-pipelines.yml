@@ -13,8 +13,12 @@ variables:
   prodEnvironment: prod
   tfWorkingDirectory: 'terraform'
 
-
-
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'AzDevOpsSvcConn'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az group list -o table'
 stages:
 - template: template-create-terraform-backend.yml  
   parameters:
@@ -26,6 +30,7 @@ stages:
     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
     location: ${{ variables.location }}
     dependsOn: []
+  
 
 - template: template-terraform-stages.yml
   parameters:
