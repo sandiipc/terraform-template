@@ -1,4 +1,4 @@
-pool: Self-hosted pool
+
 trigger:
 - master
 
