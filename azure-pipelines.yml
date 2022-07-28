@@ -11,7 +11,7 @@ variables:
   devEnvironment: dev
   testEnvironment: test
   prodEnvironment: prod
-  tfWorkingDirectory: 'terraform'
+  tfWorkingDirectory: $(System.DefaultWorkingDirectory)/terraform
 
 
 stages:
