@@ -8,6 +8,11 @@ variable "resource-group-name" {
   description = "The Resource Group name to be deployed"
 }
 
+variable "location-name" {
+  default = "westeurope"
+  description = "The Resource Group Location name to be deployed"
+}
+
 variable "virtual-network-name" {
   default = "winvmvnet"
   description = "The Virtual Network name to be deployed"
