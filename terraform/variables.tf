@@ -28,3 +28,8 @@ variable "virtual-machine-name" {
   default = "windowsvm"
   description = "The Virtual Machine name to be deployed"
 }
+
+variable "public-ip-name" {
+  default = "winvmpublicip"
+  description = "The Public IP Address name to be deployed"
+}
