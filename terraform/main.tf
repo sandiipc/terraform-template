@@ -84,7 +84,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
 
 data "azurerm_public_ip" "output_ip" {
   name                = azurerm_public_ip.vm_public_ip.name
-  resource_group_name = azurerm_virtual_machine.vm.resource_group_name
+  resource_group_name = azurerm_windows_virtual_machine.vm.resource_group_name
 }
 
 output "public_ip_address" {
