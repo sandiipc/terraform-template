@@ -38,3 +38,8 @@ variable "public-ip-name" {
   default = "winvmpublicip"
   description = "The Public IP Address name to be deployed"
 }
+
+variable "network-security-group-name" {
+  default = "winvmnsg"
+  description = "The Network Security Group name to be deployed"
+}

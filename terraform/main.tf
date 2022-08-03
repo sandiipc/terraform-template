@@ -35,10 +35,34 @@ resource "azurerm_public_ip" "vm_public_ip" {
   location                = azurerm_resource_group.rg.location
   resource_group_name     = azurerm_resource_group.rg.name
   allocation_method       = "Dynamic"
-  idle_timeout_in_minutes = 30
-
- 
+  idle_timeout_in_minutes = 30 
 }
+
+
+resource "azurerm_network_security_group" "nsg" {
+  name                = "${var.network-security-group-name}-${var.environment}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  security_rule {
+    name                       = "RDP"
+    priority                   = 1001
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+
+resource "azurerm_network_interface_security_group_association" "nic_nsg_assoc" {
+  network_interface_id      = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
 
 
 resource "azurerm_network_interface" "nic" {
