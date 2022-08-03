@@ -7,3 +7,24 @@ variable "resource-group-name" {
   default = "resourcegroup"
   description = "The Resource Group name to be deployed"
 }
+
+variable "virtual-network-name" {
+  default = "winvmvnet"
+  description = "The Virtual Network name to be deployed"
+}
+
+variable "subnet-name" {
+  default = "winvmsubnet"
+  description = "The Subnet name to be deployed"
+}
+
+variable "network-interface-name" {
+  default = "winvmnic"
+  description = "The Network Interface name to be deployed"
+}
+
+
+variable "virtual-machine-name" {
+  default = "windowsvm"
+  description = "The Virtual Machine name to be deployed"
+}
